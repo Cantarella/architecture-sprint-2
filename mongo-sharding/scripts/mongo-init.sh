@@ -13,10 +13,9 @@ EOF
 docker compose exec -T shard-1 mongosh --port 27018 --quiet <<EOF
 rs.initiate(
     {
-      _id : "repl_1",
+      _id : "testRepl",
       members: [
-        { _id : 0, host : "shard-1:27018" },
-       // { _id : 1, host : "shard-2:27019" }
+        { _id : 0, host : "shard-1:27018" }
       ]
     }
 );
@@ -24,9 +23,8 @@ EOF
 docker compose exec -T shard-2 mongosh --port 27019 --quiet <<EOF
 rs.initiate(
     {
-      _id : "repl_2",
+      _id : "testRepl",
       members: [
-       // { _id : 0, host : "shard-1:27018" },
         { _id : 1, host : "shard-2:27019" }
       ]
     }
