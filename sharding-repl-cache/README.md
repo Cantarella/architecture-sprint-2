@@ -26,6 +26,7 @@ docker compose up -d
 ```
 
 [Схема архитектуры тут](https://drive.google.com/file/d/17OsZKJwFWe60YqgaRluEjrJfFPdCf8yX/view?usp=sharing)
+[ИТОГОВАЯ схема всех 6ти заданий здесь](https://drive.google.com/file/d/1GyGYXH5X3yW1lnoP3iqYYT8ZjKGWl5SV/view?usp=sharing)
 
 ## Как проверить
 

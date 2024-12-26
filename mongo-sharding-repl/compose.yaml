@@ -1,3 +1,4 @@
+name: "mongo-sharding-repl"
 services:
   configSrv:
     image: mongo:latest
@@ -20,7 +21,7 @@ services:
         "27017"
       ]
     healthcheck:
-      test: [ "CMD", "mongo", "--eval", "db.adminCommand('ping')" ]
+      test: [ "CMD", "mongosh", "--eval", "db.adminCommand('ping')", "--port", "27017" ]
       interval: 5s
       start_period: 10s
 
@@ -46,7 +47,7 @@ services:
         "27018"
       ]
     healthcheck:
-      test: [ "CMD", "mongo", "--eval", "db.adminCommand('ping')" ]
+      test: [ "CMD", "mongosh", "--eval", "db.adminCommand('ping')", "--port", "27018" ]
       interval: 5s
       start_period: 10s
 
@@ -71,7 +72,7 @@ services:
         "27019"
       ]
     healthcheck:
-      test: [ "CMD", "mongo", "--eval", "db.adminCommand('ping')" ]
+      test: [ "CMD", "mongosh", "--eval", "db.adminCommand('ping')", "--port", "27019" ]
       interval: 5s
       start_period: 10s
 
@@ -94,7 +95,7 @@ services:
         "27020"
       ]
     healthcheck:
-      test: [ "CMD", "mongo", "--eval", "db.adminCommand('ping')" ]
+      test: [ "CMD", "mongosh", "--eval", "db.adminCommand('ping')", "--port", "27020" ]
       interval: 5s
       start_period: 10s
 
@@ -105,14 +106,14 @@ services:
       dockerfile: Dockerfile
     image: kazhem/pymongo_api:1.0.0
     depends_on:
-      - shard-1
-      - configSrv
-      - shard-2
       - mongos_router
     ports:
       - 8080:8080
+    networks:
+      app-network:
+        ipv4_address: 173.17.0.11
     environment:
-      MONGODB_URL: "mongodb://mongos_router"
+      MONGODB_URL: "mongodb://mongos_router:27020"
       MONGODB_DATABASE_NAME: "somedb"
 
 

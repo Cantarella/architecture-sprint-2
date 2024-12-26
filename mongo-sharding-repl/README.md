@@ -24,6 +24,7 @@ docker compose up -d
 ```shell
 ./scripts/check-shard-status.sh
 ```
+[Схема архитектуры тут](https://drive.google.com/file/d/1aT0L_6e5YLadiL80pUUcgcd5mIaH8S5a/view?usp=sharing)
 
 ## Как проверить
 

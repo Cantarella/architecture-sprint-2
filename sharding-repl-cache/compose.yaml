@@ -21,7 +21,7 @@ services:
         "27017"
       ]
     healthcheck:
-      test: [ "CMD", "mongo", "--eval", "db.adminCommand('ping')" ]
+      test: [ "CMD", "mongosh", "--eval", "db.adminCommand('ping')", "--port", "27017" ]
       interval: 5s
       start_period: 10s
 
@@ -47,7 +47,7 @@ services:
         "27018"
       ]
     healthcheck:
-      test: [ "CMD", "mongo", "--eval", "db.adminCommand('ping')" ]
+      test: [ "CMD", "mongosh", "--eval", "db.adminCommand('ping')", "--port", "27018" ]
       interval: 5s
       start_period: 10s
 
@@ -72,7 +72,7 @@ services:
         "27019"
       ]
     healthcheck:
-      test: [ "CMD", "mongo", "--eval", "db.adminCommand('ping')" ]
+      test: [ "CMD", "mongosh", "--eval", "db.adminCommand('ping')", "--port", "27019" ]
       interval: 5s
       start_period: 10s
 
@@ -95,7 +95,7 @@ services:
         "27020"
       ]
     healthcheck:
-      test: [ "CMD", "mongo", "--eval", "db.adminCommand('ping')" ]
+      test: [ "CMD", "mongosh", "--eval", "db.adminCommand('ping')", "--port", "27020" ]
       interval: 5s
       start_period: 10s
 
@@ -112,9 +112,14 @@ services:
       - mongos_router
     ports:
       - 8080:8080
+    networks:
+      app-network:
+        ipv4_address: 173.17.0.11
     environment:
-      MONGODB_URL: "mongodb://mongos_router"
+      MONGODB_URL: "mongodb://mongos_router:27020"
       MONGODB_DATABASE_NAME: "somedb"
+    env_file:
+      - ./api_app/.env
 
   redis_1:
     image: "redis:latest"

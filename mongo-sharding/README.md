@@ -8,7 +8,7 @@
 docker compose up -d
 ```
 
-Инициализируем реплика-сеты
+Инициализируем шарды
 ```shell
 ./scripts/mongo-init.sh
 ```
@@ -16,14 +16,11 @@ docker compose up -d
 ```shell
 ./scripts/fill-database.sh
 ```
-Добавляем по 2 реплики к каждому шарду
-```shell
-./scripts/add-replics.sh
-```
-Для получения информации о заполнении базы данных, шардах и репликах (часть скриптов закомментировано чтобы отчеты были короче)
+Для получения информации о заполнении базы данных
 ```shell
 ./scripts/check-shard-status.sh
 ```
+[Схема с архитектурой тут:](https://drive.google.com/file/d/1zmVY8OtyccF4G4WUO2VlX1X7yS_xNX6N/view?usp=sharing)
 
 ## Как проверить
 
